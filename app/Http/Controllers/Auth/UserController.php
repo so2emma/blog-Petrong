@@ -26,11 +26,6 @@ class UserController extends Controller
     $this->middleware('auth');
   }
 
-  public function documentation()
-  {
-    return view('documentation');
-  }
-
   public function pagesprofile()
   {
     // $user = Auth::user();

@@ -62,7 +62,6 @@ Route::group(['middleware' => 'installable'], function () {
   Route::get('service/{id}', [PagesController::class, 'featuredposts'])->name('service');
 
   Route::get('pagesprofile', [UserController::class, 'pagesprofile'])->name('profile');
-  Route::get('documentation', [UserController::class, 'documentation'])->name('documentation');
 
   Route::get('post/index', [PostController::class, 'index'])->name('post.index');
 
@@ -88,3 +87,6 @@ Route::group(['middleware' => 'installable'], function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('documentations', function () {
+  return view('documentation');
+})->name('documentations');

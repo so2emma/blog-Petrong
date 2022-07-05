@@ -22,6 +22,19 @@ class LoginController extends Controller
     use AuthenticatesUsers;
 
     /**
+     * Show the application's login form.
+     *
+     * @return \Illuminate\View\View
+     */
+    public function showLoginForm()
+    {
+      if (file_exists(public_path('installation.php'))) {
+        return redirect()->route('installation');
+      }
+      return view('auth.login');
+    }
+
+    /**
      * Where to redirect users after login.
      *
      * @var string

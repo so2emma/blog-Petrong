@@ -37,13 +37,9 @@ class InstallationController extends Controller
         $db = DB::select($query, [$database_name]);
         if (empty($db)) {
           return redirect()->back();
-        } elseif ('write something') {
-          return redirect(route('settings'));
+        } else {
+          return redirect(route('makesuperadmin'));
         }
-        // if(){
-        //     unlink(public_path('installation.php'));
-        //     return redirect()->route('welcome');
-        // }else 
         break;
     }
     return redirect()->route('installation');

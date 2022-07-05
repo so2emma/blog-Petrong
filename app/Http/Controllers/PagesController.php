@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Post;
 
@@ -16,8 +17,9 @@ class PagesController extends Controller
 
     public function show($id)
     {
+      $categories = Category::all();
         $post = Post::findOrfail($id);
-        return view('blog.singlepost',compact('post'));
+        return view('blog.singlepost',compact('post','categories'));
     }
     
     public function postcategory($id)

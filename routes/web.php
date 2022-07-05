@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\UserController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\HomeController;
@@ -18,6 +19,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('installation', [InstallationController::class, 'index'])->name('installation');
 Route::post('installation', [InstallationController::class, 'store'])->name('installation');
+Route::get('/createadmin', [RegisterController::class, 'showRegistrationForm'])->name('makesuperadmin');
 
 // Route::post('create_database', [InstallationController::class,'create_database'])->name('create_database');
 // Route::post('create_tables', [InstallationController::class,'create_table'])->name('create_table');

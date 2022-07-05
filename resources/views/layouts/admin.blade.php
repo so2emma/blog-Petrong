@@ -127,7 +127,7 @@
                         </li>
                         <li> <a class="waves-effect waves-dark" href="{{ route('category.index') }}" aria-expanded="false"><i class="fa fa-smile-o"></i><span class="hide-menu">Categories</span></a>
                         </li>
-                        <li> <a class="waves-effect waves-dark" href="{{ route('settings.index') }}" aria-expanded="false"><i class="fa fa-cog"></i><span class="hide-menu">Settings</span></a>
+                        <li> <a class="waves-effect waves-dark" href="{{ route('settings') }}" aria-expanded="false"><i class="fa fa-cog"></i><span class="hide-menu">Settings</span></a>
                         </li>
                         <li> <a class="waves-effect waves-dark" href="{{ route('documentations') }}" target="_blank" aria-expanded="false"><i class="fa fa-table"></i><span class="hide-menu">Documentation</span></a>
                         </li>

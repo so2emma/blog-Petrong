@@ -15,10 +15,9 @@ class CheckRole
      * @return mixed
      */
     public function handle($request, Closure $next)
-    { 
-        $users = User::all();
+    {
         if ($request->user()->role == 'Author') {
-            return redirect('index');
+          return redirect('dashboard');
         }
  
         return $next($request);

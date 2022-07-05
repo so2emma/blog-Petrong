@@ -6,35 +6,33 @@ use Illuminate\Support\Facades\Schema;
 
 class CreatePostsTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
-    public function up()
-    {
-        Schema::create('posts', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->unsignedBigInteger('user_id')->foreign();
-            $table->string('title');
-            $table->string('subtitle')->nullable();
-            $table->text('content');
-            $table->text('postImage');
-            $table->string('category_id');
-            $table->timestamps();
+  /**
+   * Run the migrations.
+   *
+   * @return void
+   */
+  public function up()
+  {
+    Schema::create('posts', function (Blueprint $table) {
+      $table->bigIncrements('id');
+      $table->unsignedBigInteger('user_id')->foreign();
+      $table->string('title');
+      $table->string('subtitle')->nullable();
+      $table->text('content');
+      $table->text('postImage');
+      $table->string('category_id');
+      $table->timestamps();
+      $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+    });
+  }
 
-            
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-        });
-    }
-
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        Schema::dropIfExists('posts');
-    }
+  /**
+   * Reverse the migrations.
+   *
+   * @return void
+   */
+  public function down()
+  {
+    Schema::dropIfExists('posts');
+  }
 }

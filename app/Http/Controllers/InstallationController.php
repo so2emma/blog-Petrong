@@ -14,16 +14,47 @@ class InstallationController extends Controller
    *
    * @return \Illuminate\Http\Response
    */
+  public function hd_c()
+  {
+    $database_name = config('database.connections.mysql.database');
+    $query = "SELECT SCHEMA_NAME FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME =  ?";
+    try {
+      $db = DB::select($query, [$database_name]);
+      return empty($db);
+    } catch (\Throwable $th) {
+      //throw $th;
+      return true;
+    }
+  }
+
+  public function hm_()
+  {
+    try {
+      $tables = DB::select('SHOW TABLES');
+      if (count($tables) > 2) {
+        return true;
+      }
+    } catch (\Throwable $th) {
+      return false;
+    }
+  }
+
   public function index()
   {
+    $hd_c = $this->hd_c();
+    $hm_ = $this->hm_();
+
     if (!file_exists(public_path('installation.php'))) {
       return redirect()->route('welcome');
     }
-    return view('installation');
+    return view('installation', compact('hd_c', 'hm_'));
   }
 
   public function store(Request $request)
   {
+    $hd_c = $this->hd_c();
+    $hm_ = $this->hm_();
+
     switch ($request->action) {
       case 'create_database':
         Artisan::call('make:database');
@@ -32,16 +63,13 @@ class InstallationController extends Controller
         Artisan::call('migrate');
         break;
       case 'finish':
-        $database_name = config('database.connections.mysql.database');
-        $query = "SELECT SCHEMA_NAME FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME =  ?";
-        $db = DB::select($query, [$database_name]);
-        if (empty($db)) {
+        if ($hd_c) {
           return redirect()->back();
         } else {
           return redirect(route('makesuperadmin'));
         }
         break;
     }
-    return redirect()->route('installation');
+    return redirect()->route('installation', compact('hd_c', 'hm_'));
   }
 }

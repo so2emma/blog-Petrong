@@ -15,25 +15,25 @@
 
             <div class="d-md-flex post-entry-2 half">
               <a href="#" class="me-4 thumbnail">
-                <img src="{{asset('storage/' . $settings->where('name', 'company_about_image')->first()->value)}}" alt="" class="img-fluid">
+                <img src="{{asset('storage/' . $settings->where('key', 'blog_about_image')->first()->value)}}" alt="" class="img-fluid">
               </a>
               <div class="ps-md-5 mt-4 mt-md-0">
                 <div class="post-meta mt-4">About us</div>
                 <h2 class="mb-4 display-4">Company History</h2>
 
-                <p>{{$settings->where('name', 'company_about')->first()->value}}</p>
+                <p>{{$settings->where('key', 'blog_about')->first()->value}}</p>
               </div>
             </div>
 
             <div class="d-md-flex post-entry-2 half mt-5">
               <a href="#" class="me-4 thumbnail order-2">
-                <img src="{{asset('storage/' . $settings->where('name', 'company_vission_mission_image')->first()->value)}}" alt="" class="img-fluid">
+                <img src="{{asset('storage/' . $settings->where('key', 'blog_vission_mission_image')->first()->value)}}" alt="" class="img-fluid">
               </a>
               <div class="pe-md-5 mt-4 mt-md-0">
                 <div class="post-meta mt-4">Mission &amp; Vision</div>
                 <h2 class="mb-4 display-4">Mission &amp; Vision</h2>
 
-                <p>{{$settings->where('name', 'company_vission_mission')->first()->value}}</p>
+                <p>{{$settings->where('key', 'blog_vission_mission')->first()->value}}</p>
               </div>
             </div>
 

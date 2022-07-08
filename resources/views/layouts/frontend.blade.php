@@ -45,11 +45,11 @@
                     
                     <a href="{{ route('welcome') }}" class="logo d-flex align-items-center">
                         <!-- Uncomment the line below if you also wish to use an image logo -->
-                        @if($settings->where('name', 'show_logo')->first()->value)
-                            <img src="{{asset('storage/' . $settings->where('name', 'company_logo')->first()->value)}}" alt=""> 
+                        @if($settings->where('key', 'show_logo')->first()->value)
+                            <img src="{{asset('storage/' . $settings->where('key', 'blog_logo')->first()->value)}}" alt=""> 
                         @endif
-                        @if($settings->where('name', 'show_company_name')->first()->value)
-                            <h1>{{$settings->where('name', 'company_name')->first()->value}}</h1>
+                        @if($settings->where('key', 'show_blog_name')->first()->value)
+                            <h1>{{$settings->where('key', 'blog_name')->first()->value}}</h1>
                         @endif
                     </a>
                     <nav id="navbar" class="navbar">
@@ -58,7 +58,7 @@
 
                             <li><a href="{{ route('about') }}">About</a></li>
                             <li><a href="{{ route('blog') }}">Blog</a></li>
-                            @if($settings->where('name', 'enable_blog')->first()->value)
+                            @if($settings->where('key', 'enable_blog')->first()->value)
                                 <li class="dropdown"><a href=""><span>Categories</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
                                     <ul>
                                         @foreach($categories->whereNotIn('name',['featured','slider','team']) as $category)
@@ -82,9 +82,9 @@
                     </nav><!-- .navbar -->
 
                     <div class="position-relative">
-                        <a href="{{$settings->where('name', 'company_facebook')->first()->value}}" class="mx-2 text-dark"><span class="bi-facebook"></span></a>
-                        <a href="{{$settings->where('name', 'company_twitter')->first()->value}}" class="mx-2 text-dark"><span class="bi-twitter"></span></a>
-                        <a href="{{$settings->where('name', 'company_instagram')->first()->value}}" class="mx-2 text-dark"><span class="bi-instagram"></span></a>
+                        <a href="{{$settings->where('key', 'blog_facebook')->first()->value}}" class="mx-2 text-dark"><span class="bi-facebook"></span></a>
+                        <a href="{{$settings->where('key', 'blog_twitter')->first()->value}}" class="mx-2 text-dark"><span class="bi-twitter"></span></a>
+                        <a href="{{$settings->where('key', 'blog_instagram')->first()->value}}" class="mx-2 text-dark"><span class="bi-instagram"></span></a>
                         <a href="{{ route('login') }}" class="m-3 text-dark"> Login</a>
 
                         <a href="#" class="mx-2 js-search-open d-none" ><span class="bi-search"></span></a>
@@ -120,7 +120,7 @@
                     <div class="row g-5">
                     <div class="col-lg-4">
                         <h3 class="footer-heading">About Us</h3>
-                        <p>{{ Illuminate\Support\Str::words($settings->where('name', 'company_about')->first()->value, 40, '...')}}</p>
+                        <p>{{ Illuminate\Support\Str::words($settings->where('key', 'blog_about')->first()->value, 40, '...')}}</p>
                         <p><a href="{{ route('about') }}" class="footer-link-more">Learn More</a></p>
                     </div>
                     <div class="col-lg-4">
@@ -156,14 +156,14 @@
                         <h3 class="footer-heading">Contact Us</h3>
 
                         <div class="position-relative">
-                            <a href="{{$settings->where('name', 'company_facebook')->first()->value}}"  class="mx-2"><span class="bi-facebook"></span></a>
-                            <a href="{{$settings->where('name', 'company_twitter')->first()->value}}" class="mx-2"><span class="bi-twitter"></span></a>
-                            <a href="{{$settings->where('name', 'company_instagram')->first()->value}}" class="mx-2"><span class="bi-instagram"></span></a>
-                            <a href="{{$settings->where('name', 'company_linkedin')->first()->value}}" class="mx-2"><span class="bi-linkedin"></span></a>
+                            <a href="{{$settings->where('key', 'blog_facebook')->first()->value}}"  class="mx-2"><span class="bi-facebook"></span></a>
+                            <a href="{{$settings->where('key', 'blog_twitter')->first()->value}}" class="mx-2"><span class="bi-twitter"></span></a>
+                            <a href="{{$settings->where('key', 'blog_instagram')->first()->value}}" class="mx-2"><span class="bi-instagram"></span></a>
+                            <a href="{{$settings->where('key', 'blog_linkedin')->first()->value}}" class="mx-2"><span class="bi-linkedin"></span></a>
                         </div>
 
-                        <p>{{$settings->where('name', 'company_email')->first()->value}}<br>
-                        {{$settings->where('name', 'company_address')->first()->value}}</p>
+                        <p>{{$settings->where('key', 'blog_email')->first()->value}}<br>
+                        {{$settings->where('key', 'blog_address')->first()->value}}</p>
 
                     </div>
                     </div>

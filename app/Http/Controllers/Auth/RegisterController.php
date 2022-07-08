@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\InstallationController;
+use App\Models\Settings;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
 use Illuminate\Auth\Events\Registered;
@@ -20,9 +22,9 @@ class RegisterController extends Controller
    */
   public function showRegistrationForm()
   {
-    if (!file_exists(public_path('installation.php'))) {
-      return redirect()->route('welcome');
-    }
+    $in = new InstallationController;
+    if ( !$in->hd_c() & $in->hm_() & !file_exists(public_path('installation.php')))
+      return redirect(route('welcome'));
     return view('auth.register');
   }
 
@@ -32,6 +34,20 @@ class RegisterController extends Controller
     event(new Registered($user = $this->create($request->all())));
     $this->guard()->login($user);
     unlink(public_path('installation.php'));
+
+    dd($request->except(['blog_logo', 'name', 'email', 'password', 'password-confirm', '_token']));
+    foreach ($request->except(['blog_logo', 'name', 'email', 'password', 'password-confirm', '_token']) as $key => $value) {
+      $s = Settings::where('key', $key)->update(['value' => $value]);
+      if (!$s) dd($s);
+    }
+
+    if ($request->hasFile('blog_logo')) {
+      $file = $request->blog_logo;
+      $filename = 'logo'.$file->getClientOriginalExtension();
+      $file->storeAs('blog_sets/', $filename);
+      Settings::where('key', 'blog_logo')->update(['value' => $filename]);
+    }
+
     return redirect(route('settings'));
   }
 
@@ -70,9 +86,15 @@ class RegisterController extends Controller
   protected function validator(array $data)
   {
     return Validator::make($data, [
-      'name'      => ['required', 'string', 'max:255'],
-      'email'     => ['required', 'string', 'email', 'max:255', 'unique:users'],
-      'password'  => ['required', 'string', 'min:8', 'confirmed'],
+      'blog_name'         => 'required|string|max:55',
+      'blog_email'        => 'required|email|max:55',
+      'blog_phone'        => 'required|string|max:20',
+      'blog_address'      => 'nullable|string|max:255',
+      'blog_logo'         => 'nullable|mimes:jpeg,jpg,png',
+      'name'              => 'required|string|max:55',
+      'email'             => 'required|string|email|max:55|unique:users',
+      'password'          => 'required|string|min:8|confirmed',
+      'password_confirmation'  => 'required|string|min:8'
     ]);
   }
 

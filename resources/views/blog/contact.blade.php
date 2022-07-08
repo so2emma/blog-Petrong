@@ -17,14 +17,14 @@
 
           <div class="col-md-6">
               <h3>Location</h3>
-              <address>{{$settings->where('name', 'company_address')->first()->value}}</address>
-              <h6 class="pt-2">Phone No:</h6><p>{{$settings->where('name', 'company_phone')->first()->value ?? ""}}</p>
+              <address>{{$settings->where('key', 'blog_address')->first()->value}}</address>
+              <h6 class="pt-2">Phone No:</h6><p>{{$settings->where('key', 'blog_phone')->first()->value ?? ""}}</p>
               <h6 class="pt-2">Social Network</h6>
               <div class="position-relative">
-                <a href="{{$settings->where('name', 'company_facebook')->first()->value}}"  class="text-dark mx-2"><span class="bi-facebook"></span></a>
-                <a href="{{$settings->where('name', 'company_twitter')->first()->value}}" class="text-dark mx-2"><span class="bi-twitter"></span></a>
-                <a href="{{$settings->where('name', 'company_instagram')->first()->value}}" class="text-dark mx-2"><span class="bi-instagram"></span></a>
-                <a href="{{$settings->where('name', 'company_linkedin')->first()->value}}" class="text-dark mx-2"><span class="bi-linkedin"></span></a>
+                <a href="{{$settings->where('key', 'blog_facebook')->first()->value}}"  class="text-dark mx-2"><span class="bi-facebook"></span></a>
+                <a href="{{$settings->where('key', 'blog_twitter')->first()->value}}" class="text-dark mx-2"><span class="bi-twitter"></span></a>
+                <a href="{{$settings->where('key', 'blog_instagram')->first()->value}}" class="text-dark mx-2"><span class="bi-instagram"></span></a>
+                <a href="{{$settings->where('key', 'blog_linkedin')->first()->value}}" class="text-dark mx-2"><span class="bi-linkedin"></span></a>
               </div>
           </div><!-- End Info Item -->
 

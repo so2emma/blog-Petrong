@@ -18,7 +18,7 @@ class InstallationMiddleware
   {
     if (file_exists(public_path('installation.php'))) {
       return redirect()->route('installation');
-    } elseif (!Settings::where('name', 'company_name')->where('value', '!=', null)->first()) {
+    } elseif (!Settings::where('key', 'blog_name')->where('value', '!=', null)->first()) {
       return redirect()->route('settings');
     }
     return $next($request);

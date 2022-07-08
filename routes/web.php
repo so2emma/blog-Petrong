@@ -43,7 +43,6 @@ Route::group(['middleware' => 'installable'], function () {
     Route::post('author/store', [UserController::class, 'store'])->name('author.store');
     Route::post('author/update', [UserController::class, 'updateAuthor'])->name('author.update');
     Route::post('author/destroy', [UserController::class, 'destroy'])->name('author.destroy');
-    
     Route::get('settings', [SettingsController::class, 'index'])->name('settings');
     Route::post('settings/update', [SettingsController::class, 'update'])->name('update.settings');
   });

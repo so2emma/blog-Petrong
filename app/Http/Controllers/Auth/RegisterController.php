@@ -25,7 +25,7 @@ class RegisterController extends Controller
     $in = new InstallationController;
     if ( !$in->hd_c() & $in->hm_() & !file_exists(public_path('installation.php')))
       return redirect(route('welcome'));
-    return view('auth.register');
+    return view('setup.createadmin');
   }
 
   public function register(Request $request)
@@ -35,10 +35,8 @@ class RegisterController extends Controller
     $this->guard()->login($user);
     unlink(public_path('installation.php'));
 
-    dd($request->except(['blog_logo', 'name', 'email', 'password', 'password-confirm', '_token']));
     foreach ($request->except(['blog_logo', 'name', 'email', 'password', 'password-confirm', '_token']) as $key => $value) {
-      $s = Settings::where('key', $key)->update(['value' => $value]);
-      if (!$s) dd($s);
+      Settings::where('key', $key)->update(['value' => $value]);
     }
 
     if ($request->hasFile('blog_logo')) {

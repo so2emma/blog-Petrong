@@ -47,7 +47,7 @@ class InstallationController extends Controller
     if (!file_exists(public_path('installation.php'))) {
       return redirect()->route('welcome');
     }
-    return view('installation', compact('hd_c', 'hm_'));
+    return view('setup.installation', compact('hd_c', 'hm_'));
   }
 
   public function store(Request $request)
@@ -61,15 +61,15 @@ class InstallationController extends Controller
         break;
       case 'migrations':
         Artisan::call('migrate');
+        Artisan::call('db:seed', ['--class'=>'SettingsSeeder']);
         break;
       case 'finish':
-        if ($hd_c) {
+        if ($hd_c) 
           return redirect()->back();
-        } else {
+        else
           return redirect(route('makesuperadmin'));
-        }
         break;
     }
-    return redirect()->route('installation', compact('hd_c', 'hm_'));
+    return redirect()->route('setup.installation', compact('hd_c', 'hm_'));
   }
 }

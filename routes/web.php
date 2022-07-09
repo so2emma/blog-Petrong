@@ -6,8 +6,9 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\InstallationController;
 use App\Http\Controllers\PagesController;
-use App\Http\Controllers\PostController;
+use App\Http\Controllers\POSTController;
 use App\Http\Controllers\SettingsController;
+use App\Http\Controllers\TemplateController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -17,64 +18,66 @@ use Illuminate\Support\Facades\Route;
 |--------------------------------------------------------------------------
 */
 
-Route::get('installation', [InstallationController::class, 'index'])->name('installation');
-Route::post('installation', [InstallationController::class, 'store'])->name('installation');
-Route::get('/createadmin', [RegisterController::class, 'showRegistrationForm'])->name('makesuperadmin');
+Route::GET('installation', [InstallationController::class, 'index'])->name('installation');
+Route::POST('installation', [InstallationController::class, 'store'])->name('installation');
+Route::GET('/createadmin', [RegisterController::class, 'showRegistrationForm'])->name('makesuperadmin');
+Route::GET('/template', [TemplateController::class, 'index'])->name('choosetemplate');
+Route::POST('/template', [TemplateController::class, 'choose'])->name('choosetemplate');
 
-// Route::post('create_database', [InstallationController::class,'create_database'])->name('create_database');
-// Route::post('create_tables', [InstallationController::class,'create_table'])->name('create_table');
-// Route::post('create_settings', [InstallationController::class,'settings'])->name('create_settings');
+// Route::POST('create_database', [InstallationController::class,'create_database'])->name('create_database');
+// Route::POST('create_tables', [InstallationController::class,'create_table'])->name('create_table');
+// Route::POST('create_settings', [InstallationController::class,'settings'])->name('create_settings');
 
 Route::view('email', 'email');
 Auth::routes();
 
 Route::group(['middleware' => 'installable'], function () {
   Route::group(['middleware' => 'checkrole'], function () {
-    Route::get('categories', [CategoryController::class, 'index'])->name('category.index');
-    Route::get('category/create', [CategoryController::class, 'create'])->name('category.create');
-    Route::get('category/edit/{id}', [CategoryController::class, 'edit'])->name('category.edit');
-    Route::post('category/update', [CategoryController::class, 'update'])->name('category.update');
-    Route::post('category/destroy', [CategoryController::class, 'destroy'])->name('category.destroy');
-    Route::post('category/store', [CategoryController::class, 'store'])->name('category.store');
+    Route::GET('categories', [CategoryController::class, 'index'])->name('category.index');
+    Route::GET('category/create', [CategoryController::class, 'create'])->name('category.create');
+    Route::GET('category/edit/{id}', [CategoryController::class, 'edit'])->name('category.edit');
+    Route::POST('category/update', [CategoryController::class, 'update'])->name('category.update');
+    Route::POST('category/destroy', [CategoryController::class, 'destroy'])->name('category.destroy');
+    Route::POST('category/store', [CategoryController::class, 'store'])->name('category.store');
 
-    Route::get('authors', [UserController::class, 'author'])->name('author.index');
-    Route::get('author/create', [UserController::class, 'create'])->name('author.create');
-    Route::get('author/edit/{id}', [UserController::class, 'edit'])->name('author.edit');
-    Route::post('author/store', [UserController::class, 'store'])->name('author.store');
-    Route::post('author/update', [UserController::class, 'updateAuthor'])->name('author.update');
-    Route::post('author/destroy', [UserController::class, 'destroy'])->name('author.destroy');
-    Route::get('settings', [SettingsController::class, 'index'])->name('settings');
-    Route::post('settings/update', [SettingsController::class, 'update'])->name('update.settings');
+    Route::GET('authors', [UserController::class, 'author'])->name('author.index');
+    Route::GET('author/create', [UserController::class, 'create'])->name('author.create');
+    Route::GET('author/edit/{id}', [UserController::class, 'edit'])->name('author.edit');
+    Route::POST('author/store', [UserController::class, 'store'])->name('author.store');
+    Route::POST('author/update', [UserController::class, 'updateAuthor'])->name('author.update');
+    Route::POST('author/destroy', [UserController::class, 'destroy'])->name('author.destroy');
+    Route::GET('settings', [SettingsController::class, 'index'])->name('settings');
+    Route::POST('settings/update', [SettingsController::class, 'update'])->name('update.settings');
   });
 
-  Route::get('/', [HomeController::class, 'index'])->name('welcome');
-  Route::get('about', [HomeController::class, 'about'])->name('about');
-  Route::get('contact', [HomeController::class, 'contact'])->name('contact');
-  Route::post('contact', [HomeController::class, 'sendContact'])->name('send.contact');
-  Route::post('subscribe', [HomeController::class, 'save'])->name('subscriber.save');
+  Route::GET('/', [HomeController::class, 'index'])->name('welcome');
+  Route::GET('about', [HomeController::class, 'about'])->name('about');
+  Route::GET('contact', [HomeController::class, 'contact'])->name('contact');
+  Route::POST('contact', [HomeController::class, 'sendContact'])->name('send.contact');
+  Route::POST('subscribe', [HomeController::class, 'save'])->name('subscriber.save');
 
-  Route::get('blog', [PagesController::class, 'blog'])->name('blog');
-  Route::get('blog/singlepost/{id}', [PagesController::class, 'show'])->name('post.show');
-  Route::get('blog/category/{id}', [PagesController::class, 'postcategory'])->name('post.category');
-  Route::get('service/{id}', [PagesController::class, 'featuredposts'])->name('service');
+  Route::GET('blog', [PagesController::class, 'blog'])->name('blog');
+  Route::GET('blog/singlePOST/{id}', [PagesController::class, 'show'])->name('POST.show');
+  Route::GET('blog/category/{id}', [PagesController::class, 'POSTcategory'])->name('POST.category');
+  Route::GET('service/{id}', [PagesController::class, 'featuredPOSTs'])->name('service');
 
 
-  Route::get('pagesprofile', [UserController::class, 'pagesprofile'])->name('profile');
-  Route::post('profile/update', [UserController::class, 'update'])->name('update.profile');
-  Route::post('picture/update', [UserController::class, 'picture'])->name('update.picture');
+  Route::GET('pagesprofile', [UserController::class, 'pagesprofile'])->name('profile');
+  Route::POST('profile/update', [UserController::class, 'update'])->name('update.profile');
+  Route::POST('picture/update', [UserController::class, 'picture'])->name('update.picture');
 
-  Route::get('posts', [PostController::class, 'index'])->name('post.index');
-  Route::get('post/edit/{id}', [PostController::class, 'edit'])->name('post.edit');
-  Route::get('post/create', [PostController::class, 'create'])->name('post.create');
-  Route::post('post/store', [PostController::class, 'store'])->name('post.store');
-  Route::post('post/update', [PostController::class, 'update'])->name('post.update');
-  Route::post('post/destroy', [PostController::class, 'destroy'])->name('post.destroy');
+  Route::GET('POSTs', [POSTController::class, 'index'])->name('POST.index');
+  Route::GET('POST/edit/{id}', [POSTController::class, 'edit'])->name('POST.edit');
+  Route::GET('POST/create', [POSTController::class, 'create'])->name('POST.create');
+  Route::POST('POST/store', [POSTController::class, 'store'])->name('POST.store');
+  Route::POST('POST/update', [POSTController::class, 'update'])->name('POST.update');
+  Route::POST('POST/destroy', [POSTController::class, 'destroy'])->name('POST.destroy');
 
-  Route::post('change/password', [UserController::class, 'reset'])->name('change.password');
+  Route::POST('change/password', [UserController::class, 'reset'])->name('change.password');
 
-  Route::get('dashboard', [UserController::class, 'dashboard'])->name('dashboard');
+  Route::GET('dashboard', [UserController::class, 'dashboard'])->name('dashboard');
 });
 
-Route::get('documentations', function () {
+Route::GET('documentations', function () {
   return view('documentation');
 })->name('documentations');

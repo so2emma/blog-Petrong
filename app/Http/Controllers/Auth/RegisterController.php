@@ -41,12 +41,12 @@ class RegisterController extends Controller
 
     if ($request->hasFile('blog_logo')) {
       $file = $request->blog_logo;
-      $filename = 'logo'.$file->getClientOriginalExtension();
+      $filename = 'logo.'.$file->getClientOriginalExtension();
       $file->storeAs('blog_sets/', $filename);
       Settings::where('key', 'blog_logo')->update(['value' => $filename]);
     }
 
-    return redirect(route('settings'));
+    return redirect()->route('choosetemplate');
   }
 
   /**

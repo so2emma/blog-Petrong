@@ -70,6 +70,6 @@ class InstallationController extends Controller
           return redirect(route('makesuperadmin'));
         break;
     }
-    return redirect()->route('setup.installation', compact('hd_c', 'hm_'));
+    return redirect()->route('installation', compact('hd_c', 'hm_'));
   }
 }

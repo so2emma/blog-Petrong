@@ -18,7 +18,8 @@ class TemplateController extends Controller
   }
 
   public function choose(Request $request){
-    Settings::where('key', 'template')
-      ->update(['value', $request->template_id]);
+    Settings::where('key', "template")->update(['value' => $request->template_id]);
+
+    return redirect()->route('settings');
   }
 }

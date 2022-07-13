@@ -23,7 +23,8 @@ class PostController extends Controller
   {
     $users = User::where('role', '=', 'Admin')->get();
     $posts = Post::paginate(5);
-    return view('post.index', compact('posts', 'users'));
+    $categories = Category::all();
+    return view('post.index', compact('posts', 'users', 'categories'));
   }
   
   public function create()

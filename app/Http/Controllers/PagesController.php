@@ -12,7 +12,8 @@ class PagesController extends Controller
     public function blog()
     {   
         $posts = Post::paginate(5);
-        return view('blog.blog', compact('posts'));
+        $categories = Category::all();
+        return view('blog.blog', compact('posts', 'categories'));
     }
 
     public function show($id)
@@ -24,8 +25,9 @@ class PagesController extends Controller
     
     public function postcategory($id)
     {
+      $categories = Category::all();
         $posts = Post::where('category_id', $id)->paginate(5);
-        return view('blog.category', compact('posts'));
+        return view('blog.category', compact('posts', 'categories'));
     }
 
     public function featuredposts($id)

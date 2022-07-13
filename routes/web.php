@@ -6,7 +6,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\InstallationController;
 use App\Http\Controllers\PagesController;
-use App\Http\Controllers\POSTController;
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\TemplateController;
 use Illuminate\Support\Facades\Auth;
@@ -32,6 +32,7 @@ Route::view('email', 'email');
 Auth::routes();
 
 Route::group(['middleware' => ['installable','template']], function () {
+
   Route::group(['middleware' => 'checkrole'], function () {
     Route::GET('categories', [CategoryController::class, 'index'])->name('category.index');
     Route::GET('category/create', [CategoryController::class, 'create'])->name('category.create');
@@ -46,6 +47,7 @@ Route::group(['middleware' => ['installable','template']], function () {
     Route::POST('author/store', [UserController::class, 'store'])->name('author.store');
     Route::POST('author/update', [UserController::class, 'updateAuthor'])->name('author.update');
     Route::POST('author/destroy', [UserController::class, 'destroy'])->name('author.destroy');
+
     Route::GET('settings', [SettingsController::class, 'index'])->name('settings');
     Route::POST('settings/update', [SettingsController::class, 'update'])->name('update.settings');
   });
@@ -57,8 +59,8 @@ Route::group(['middleware' => ['installable','template']], function () {
   Route::POST('subscribe', [HomeController::class, 'save'])->name('subscriber.save');
 
   Route::GET('blog', [PagesController::class, 'blog'])->name('blog');
-  Route::GET('blog/singlePOST/{id}', [PagesController::class, 'show'])->name('POST.show');
-  Route::GET('blog/category/{id}', [PagesController::class, 'POSTcategory'])->name('POST.category');
+  Route::GET('blog/singlePOST/{id}', [PagesController::class, 'show'])->name('post.show');
+  Route::GET('blog/category/{id}', [PagesController::class, 'Postcategory'])->name('post.category');
   Route::GET('service/{id}', [PagesController::class, 'featuredPOSTs'])->name('service');
 
 
@@ -66,15 +68,14 @@ Route::group(['middleware' => ['installable','template']], function () {
   Route::POST('profile/update', [UserController::class, 'update'])->name('update.profile');
   Route::POST('picture/update', [UserController::class, 'picture'])->name('update.picture');
 
-  Route::GET('POSTs', [POSTController::class, 'index'])->name('POST.index');
-  Route::GET('POST/edit/{id}', [POSTController::class, 'edit'])->name('POST.edit');
-  Route::GET('POST/create', [POSTController::class, 'create'])->name('POST.create');
-  Route::POST('POST/store', [POSTController::class, 'store'])->name('POST.store');
-  Route::POST('POST/update', [POSTController::class, 'update'])->name('POST.update');
-  Route::POST('POST/destroy', [POSTController::class, 'destroy'])->name('POST.destroy');
+  Route::GET('POSTs', [PostController::class, 'index'])->name('post.index');
+  Route::GET('POST/edit/{id}', [PostController::class, 'edit'])->name('post.edit');
+  Route::GET('POST/create', [PostController::class, 'create'])->name('post.create');
+  Route::POST('POST/store', [PostController::class, 'store'])->name('post.store');
+  Route::POST('POST/update', [PostController::class, 'update'])->name('post.update');
+  Route::POST('POST/destroy', [PostController::class, 'destroy'])->name('post.destroy');
 
   Route::POST('change/password', [UserController::class, 'reset'])->name('change.password');
-
   Route::GET('dashboard', [UserController::class, 'dashboard'])->name('dashboard');
 });
 

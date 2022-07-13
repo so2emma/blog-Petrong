@@ -31,7 +31,7 @@ Route::POST('/template', [TemplateController::class, 'choose'])->name('choosetem
 Route::view('email', 'email');
 Auth::routes();
 
-Route::group(['middleware' => 'installable'], function () {
+Route::group(['middleware' => ['installable','template']], function () {
   Route::group(['middleware' => 'checkrole'], function () {
     Route::GET('categories', [CategoryController::class, 'index'])->name('category.index');
     Route::GET('category/create', [CategoryController::class, 'create'])->name('category.create');

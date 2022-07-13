@@ -10,7 +10,7 @@
   <div class="d-flex justify-content-center">
     <div class="col-md-6">
       <p>Now we need a few more information to personalise {{config('app.name', 'Blog')}} for you </p>
-      <form method="POST" action="{{route('register')}}" class="text-left pb-5">
+      <form method="POST" action="{{route('register')}}" class="text-left pb-5" enctype="multipart/form-data" >
         @csrf
         <div class="card bg-light p-3 p-md-5 pb-3">
 

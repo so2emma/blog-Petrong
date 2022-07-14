@@ -1,46 +1,61 @@
 
-<header id="header" class="navbar navbar-expand-lg navbar-end navbar-light bg-white">
-  <div class="container">
-    <nav class="js-mega-menu navbar-nav-wrap">
-      <!-- Default Logo -->
-      <a class="navbar-brand" href="../index.html" aria-label="Front">
-        <img class="navbar-brand-logo" src="../assets/svg/logos/logo.svg" alt="Logo">
+  <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+    <div class="container">
+      <a class="navbar-brand" href="{{ url('/') }}">
+        <h1 class="h4">{{ config('app.name', 'Blog') }}</h1>
       </a>
-      <!-- End Default Logo -->
-
-      <!-- Toggler -->
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-default">
-          <i class="bi-list"></i>
-        </span>
-        <span class="navbar-toggler-toggled">
-          <i class="bi-x"></i>
-        </span>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navContent" aria-controls="navContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+        <span class="navbar-toggler-icon"></span>
       </button>
-      <!-- End Toggler -->
 
-      <!-- Collapse -->
-      <div class="collapse navbar-collapse" id="navbarNavDropdown">
-        <ul class="navbar-nav">
-          <!-- Landings -->
-          <li class="nav-item dropdown">
-            <a id="landingsMegaMenu" class="nav-link dropdown-toggle " aria-current="page" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Landings</a>
+      <div class="collapse navbar-collapse" id="navContent">
+        <!-- Left Side Of Navbar -->
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <!-- <li class="nav-item">
+            <a class="nav-link active"
+              aria-current="page" href="{{ route('welcome') }}"
+              >Home</a>
+          </li> -->
+        </ul>
+
+        <!-- Right Side Of Navbar -->
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="{{ route('about') }}">About</a>
           </li>
-          <!-- End Landings -->
-
-          <!-- Account -->
-          <li class="nav-item dropdown">
-            <a id="accountMegaMenu" class="nav-link dropdown-toggle " href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Account</a>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ route('blog') }}">Blog</a>
           </li>
-
-          @if (Route::has('login') && Auth::check())
-        <a href="{{route('dashboard')}}" class="text-light btn btn-dark btn-transition"> Dashboard</a>
-      @elseif (Route::has('login') && !Auth::check())
-        <a href="{{route('login')}}" class="m-3 text-dark"> Login</a>
-      @endif
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Categories
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              @forelse($categories->whereNotIn('name',['slider','team']) as $category)
+                <li><a class="dropdown-item text-capitalize" href="{{ route('post.category', $category->id) }}">{{$category->name}}</a></li>
+              @empty
+              @endforelse
+            </ul>
+          </li>
+          @guest
+          @else
+          <li class="nav-item dropdown">
+            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+              {{ Auth::user()->name }}
+            </a>
+            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="{{ route('dashboard') }}">{{ __('Dashboard') }}</a>
+              <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                document.getElementById('logout-form').submit();">
+                {{ __('Logout') }}
+              </a>
+              <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                @csrf
+              </form>
+            </div>
+          </li>
+          @endguest
         </ul>
       </div>
-      <!-- End Collapse -->
-    </nav>
-  </div>
-</header>
+    </div>
+  </nav>

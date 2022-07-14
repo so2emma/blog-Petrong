@@ -24,7 +24,7 @@
             <div class="swiper-wrapper">
               @foreach($sliderposts as $sliderpost)
               <div class="swiper-slide">
-                <a href="{{ route('post.show', $sliderpost->id) }}" class="img-bg d-flex align-items-end" style="background-image: url({{'/storage/'.$sliderpost->postImage}})">
+                <a href="{{ route('post.show', $sliderpost->id) }}" class="img-bg d-flex align-items-end" style="background-image: url({{`/storage/`.$sliderpost->postImage}})">
                   <div class="img-bg-inner">
                     <h2>{{ $sliderpost->title }}</h2>
                     <p>{{ Illuminate\Support\Str::words($sliderpost->content, 30, '...')}} </p>

@@ -32,6 +32,15 @@ $temp = \App\Models\Settings::template_is();
         No Posts has been created.
       </p>
       @endforelse
+      <div class="text-center py-4">
+        <div class="text-justify-center">
+          <nav class="text-center pt-3" aria-label="Page navigation example">
+            <ul class="pagination justify-content-center">
+              {!! $posts->links() !!}
+            </ul>
+          </nav>
+        </div>
+      </div>
     </div>
     <div class="col-md-3">
       <div class="aside-block">
@@ -97,15 +106,3 @@ $temp = \App\Models\Settings::template_is();
   </div>
 </div>
 @endsection
-
-{{--
-<div class="text-center py-4">
-  <div class="text-justify-center">
-    <nav class="text-center pt-3" aria-label="Page navigation example">
-      <ul class="pagination justify-content-center">
-        {!! $posts->links() !!}
-      </ul>
-    </nav>
-  </div>
-</div>
---}}

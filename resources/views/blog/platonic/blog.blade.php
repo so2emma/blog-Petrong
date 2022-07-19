@@ -10,12 +10,10 @@
             </button>
           </h2>
           <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#side-groups">
-            <div class="accordion-body">
+            <div class="accordion-body p-1 d-flex flex-wrap">
               @forelse (App\Models\Category::all() as $category)
-              <a href="" >
-                <div class="box mb-2">
-                {{$category->name}}
-                </div>
+              <a href="" class="p-1">
+                <div class="box"> {{$category->name}} </div>
               </a>
               @empty
               <div class="text-center p-3">

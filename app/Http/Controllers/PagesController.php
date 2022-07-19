@@ -10,7 +10,7 @@ class PagesController extends Controller
 
   public function blog()
   {
-    $posts = Post::paginate(10);
+    $posts = Post::paginate(12);
     return view('blog.blog', compact('posts'));
   }
 

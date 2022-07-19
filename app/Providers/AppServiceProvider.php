@@ -30,10 +30,11 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         //
-        Schema::defaultStringLength(191);
-        View::composer('layouts.frontend', function ($view) {
-          $view->with(['settings' => Settings::all(), 'categories' => Category::all(), 'featuredposts' => Post::where('category_id', '3')->get()]);
-        }); 
+      Schema::defaultStringLength(191);
+      
+      // View::composer('layouts.frontend', function ($view) {
+      //   $view->with(['settings' => Settings::all(), 'categories' => Category::all(), 'featuredposts' => Post::where('category_id', '3')->get()]);
+      // });
 
       Paginator::useBootstrap();
     }

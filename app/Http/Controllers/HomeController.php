@@ -17,9 +17,8 @@ class HomeController extends Controller
     $authors = User::all();
     $sliderposts = Post::where('category_id', '2')->get();
     $featuredposts = Post::where('category_id', '3')->get();
-    return view('blog.index', compact('authors', 'sliderposts', 'featuredposts'));
+    return view('main.home', compact('authors', 'sliderposts', 'featuredposts'));
   }
-
 
   public function about()
   {
@@ -35,14 +34,10 @@ class HomeController extends Controller
 
   public function save(Request $request)
   {
-    $this->validate(
-      $request,
-      [
-        'name' => 'required',
-        'email' => 'required',
-      ]
-    );
-
+    $this->validate( $request, [
+      'name' => 'required',
+      'email' => 'required',
+    ]);
 
     $subscribers = $request->all();
     // $subscriber = Subscriber::create($subscribers);
@@ -64,14 +59,12 @@ class HomeController extends Controller
     $user['email'] = $request->email;
     $user['subject'] = $request->subject;
     $user['message'] = $request->message;
-    // dd($user);
 
     // $admin = User::where('role', '=', 'admin')->get();
     // Notification::send($admin,new ContactNotification($user));
     $name = $request->name;
     return redirect()->back()->with(['status' => $name . ', Thanks for engaging, your message has been sent.']);
   }
-
 
   public function dashboard()
   {

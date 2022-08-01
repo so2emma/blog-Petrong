@@ -9,6 +9,7 @@
     }
   }
 </style>
+ 
 <div id="hero_carousel" class="carousel slide" data-bs-ride="carousel">
   <div class="carousel-indicators">
     <button type="button" data-bs-target="#hero_carousel" data-bs-slide-to="0" aria-label="Slide 1"></button>

@@ -8,6 +8,7 @@
     }
   }
 </style>
+
 <div id="hero_carousel" class="carousel slide" data-bs-ride="carousel" >
   <div class="carousel-indicators">
     <button type="button" data-bs-target="#hero_carousel" data-bs-slide-to="0" aria-label="Slide 1"></button>
@@ -35,9 +36,21 @@
   </button>
 </div>
 
+<div class="mission p-3 p-md-5">
+  <div class="row">
+    <div class="col-md-6">
+      <h5>Our Vission</h5>
+      <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Id fugiat minima, soluta sed consequatur nihil, voluptatibus nam tenetur tempore ipsam expedita magnam odit ad itaque quia, at architecto ducimus maxime!</p>
+    </div>
+    <div class="col-md-6">
+      <h5>Our Mission</h5>
+      <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Id fugiat minima, soluta sed consequatur nihil, voluptatibus nam tenetur tempore ipsam expedita magnam odit ad itaque quia, at architecto ducimus maxime!</p>
+    </div>
+  </div>
+</div>
 
-<main id="main">
-  <!-- ======= Hero Slider Section ======= -->
+
+<!-- <main id="main">
   <section id="hero-slider" class="hero-slider">
     <div class="container-md" data-aos="fade-in">
       <div class="row">
@@ -79,8 +92,9 @@
         </div>
       </div>
     </div>
-  </section><!-- End Hero Slider Section -->
-  <!-- Featured Posts -->
+  </section>
+  
+
   <div class="container" data-aos="fade-up">
     <div class="row">
       <div class="col-12 text-center mb-5">
@@ -109,8 +123,8 @@
       @endforeach
     </div>
   </div>
-  <!-- End Featured Posts -->
-  <!-- Authors -->
+  
+
   <div class="container" data-aos="fade-up">
     <div class="row">
       <div class="col-12 text-center mb-5">
@@ -138,6 +152,5 @@
       @endforeach
     </div>
   </div>
-  <!-- End Authors -->
-</main>
+</main> -->
 <!-- End #main -->

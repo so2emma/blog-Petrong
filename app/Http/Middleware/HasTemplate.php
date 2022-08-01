@@ -19,7 +19,7 @@ class HasTemplate
     {
       $settings = Settings::where('key', 'template')->first();
       if($settings->value == null) {
-        return redirect('choosetemplate');
+        return redirect('template');
       }
       
       return $next($request);

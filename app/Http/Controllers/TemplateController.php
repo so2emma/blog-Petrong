@@ -11,7 +11,7 @@ class TemplateController extends Controller
   public function index()
   {
     $in = new InstallationController;
-    if ( !$in->hd_c() & $in->hm_() & !file_exists(public_path('installation.php')))
+    if (file_exists(public_path('installation.php')))
       return redirect(route('welcome'));
     $templates = Template::all();
     return view('setup.choosetemplate', compact('templates'));

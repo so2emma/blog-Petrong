@@ -1,7 +1,6 @@
-<link href="{{asset('frontend/vendor/bootstrap-icons/bootstrap-icons.css')}}" rel="stylesheet">
-<link href="{{asset('frontend/vendor/swiper/swiper-bundle.min.css')}}" rel="stylesheet">
-<link href="{{asset('frontend/vendor/glightbox/css/glightbox.min.css')}}" rel="stylesheet">
-<link href="{{asset('frontend/vendor/aos/aos.css')}}" rel="stylesheet">
-<link href="{{asset('frontend/css/variables.css')}}" rel="stylesheet">
-<link href="{{asset('frontend/css/main.css')}}" rel="stylesheet">
-<link href="{{asset('frontend/vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
+<link href="{{asset('bootstrap-5.1.3-dist/css/bootstrap.min.css')}}" rel="stylesheet">
+<link href="{{asset('sunness/css/footer.css')}}" rel="stylesheet">
+<link href="{{asset('sunness/css/main.css')}}" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Raleway&display=swap" rel="stylesheet">
